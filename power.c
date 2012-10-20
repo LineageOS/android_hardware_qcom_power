@@ -22,56 +22,63 @@
 #include <fcntl.h>
 #include <dlfcn.h>
 
-#define LOG_TAG "Qualcomm PowerHAL"
+#define LOG_TAG "PowerHAL"
 #include <utils/Log.h>
 
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 #define TOUCHBOOST_SOCKET       "/dev/socket/mpdecision/touchboost"
 
+static int client_sockfd;
+static struct sockaddr_un client_addr;
+
 static void power_init(struct power_module *module)
 {
-}
-
-static void power_set_interactive(struct power_module *module, int on)
-{
+    ALOGI("%s", __func__);
+    client_sockfd = socket(PF_UNIX, SOCK_DGRAM, 0);
+    if (client_sockfd < 0) {
+        ALOGE("%s: failed to open: %s", __func__, strerror(errno));
+        return;
+    }
+    memset(&client_addr, 0, sizeof(struct sockaddr_un));
+    client_addr.sun_family = AF_UNIX;
+    snprintf(client_addr.sun_path, UNIX_PATH_MAX, TOUCHBOOST_SOCKET);
 }
 
 static void touch_boost()
 {
-    static int client_comsoc = -1;
-    static struct sockaddr_un client_addr;
-    int rc = 0;
+    int rc;
 
-    client_comsoc = socket(PF_UNIX, SOCK_DGRAM, 0);
-
-    if (client_comsoc < 0) {
+    if (client_sockfd < 0) {
+        ALOGE("%s: touchboost socket not created", __func__);
         return;
     }
 
-    memset(&client_addr, 0, sizeof(struct sockaddr_un));
-    client_addr.sun_family = AF_UNIX;
-    snprintf(client_addr.sun_path, UNIX_PATH_MAX, TOUCHBOOST_SOCKET);
-
-    rc = sendto(client_comsoc, "1", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
-
-    if (rc == -1) {
-        ALOGE("Failed to send rc=%d", rc);
+    rc = sendto(client_sockfd, "1", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+    if (rc < 0) {
+        ALOGE("%s: failed to send: %s", __func__, strerror(errno));
     }
+}
 
-    if (client_comsoc >= 0) {
-        close(client_comsoc);
-        client_comsoc = -1;
-    }
+static void power_set_interactive(struct power_module *module, int on)
+{
+    ALOGV("%s %s", __func__, (on ? "ON" : "OFF"));
+    if (on)
+        touch_boost();
 }
 
 static void power_hint(struct power_module *module, power_hint_t hint,
                        void *data) {
     switch (hint) {
-
         case POWER_HINT_INTERACTION:
+            ALOGV("POWER_HINT_INTERACTION");
             touch_boost();
-	    break;
+            break;
+#if 0
+        case POWER_HINT_VSYNC:
+            ALOGV("POWER_HINT_VSYNC %s", (data ? "ON" : "OFF"));
+            break;
+#endif
         default:
              break;
     }
