@@ -1,4 +1,6 @@
 ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
+ifneq ($(TARGET_PROVIDES_POWERHAL),true)
+
 LOCAL_PATH := $(call my-dir)
 
 # HAL module implemenation stored in
@@ -14,4 +16,5 @@ LOCAL_SRC_FILES := \
 LOCAL_MODULE:= power.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
+endif
 endif
