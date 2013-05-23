@@ -27,7 +27,7 @@
 
 #include <hardware/hardware.h>
 #include <hardware/power.h>
-#define TOUCHBOOST_SOCKET       "/dev/socket/mpdecision/touchboost"
+#define BOOST_SOCKET       "/dev/socket/mpdecision/boost"
 
 static int client_sockfd;
 static struct sockaddr_un client_addr;
@@ -42,7 +42,7 @@ static void power_init(struct power_module *module)
     }
     memset(&client_addr, 0, sizeof(struct sockaddr_un));
     client_addr.sun_family = AF_UNIX;
-    snprintf(client_addr.sun_path, UNIX_PATH_MAX, TOUCHBOOST_SOCKET);
+    snprintf(client_addr.sun_path, UNIX_PATH_MAX, BOOST_SOCKET);
 }
 
 static void touch_boost()
@@ -60,11 +60,35 @@ static void touch_boost()
     }
 }
 
+static void core_boost(int on)
+{
+    int rc;
+
+    if (client_sockfd < 0) {
+        ALOGE("%s: touchboost socket not created", __func__);
+        return;
+    }
+
+    if (!on) {
+        rc = sendto(client_sockfd, "2", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+    } else {
+        rc = sendto(client_sockfd, "3", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+    }
+
+    if (rc < 0) {
+        ALOGE("%s: failed to send: %s", __func__, strerror(errno));
+    }
+}
+
 static void power_set_interactive(struct power_module *module, int on)
 {
     ALOGV("%s %s", __func__, (on ? "ON" : "OFF"));
-    if (on)
+    if (on) {
+        core_boost(1);
         touch_boost();
+    } else {
+        core_boost(0);
+    }
 }
 
 static void power_hint(struct power_module *module, power_hint_t hint,
