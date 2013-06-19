@@ -27,30 +27,88 @@
 
 #include <hardware/hardware.h>
 #include <hardware/power.h>
-#define TOUCHBOOST_SOCKET       "/dev/socket/mpdecision/touchboost"
+
+#define STATE_ON "state=1"
+#define STATE_OFF "state=0"
+
+#define BOOST_SOCKET       "/dev/socket/mpdecision/boost"
 
 static int client_sockfd;
 static struct sockaddr_un client_addr;
+static int last_state = -1;
+
+static void socket_init()
+{
+    if (!client_sockfd) {
+        client_sockfd = socket(PF_UNIX, SOCK_DGRAM, 0);
+        if (client_sockfd < 0) {
+            ALOGE("%s: failed to open: %s", __func__, strerror(errno));
+            return;
+        }
+        memset(&client_addr, 0, sizeof(struct sockaddr_un));
+        client_addr.sun_family = AF_UNIX;
+        snprintf(client_addr.sun_path, UNIX_PATH_MAX, BOOST_SOCKET);
+    }
+}
 
 static void power_init(struct power_module *module)
 {
     ALOGI("%s", __func__);
-    client_sockfd = socket(PF_UNIX, SOCK_DGRAM, 0);
+    socket_init();
+}
+
+static void sync_thread(int off)
+{
+    int rc;
+
     if (client_sockfd < 0) {
-        ALOGE("%s: failed to open: %s", __func__, strerror(errno));
+        ALOGE("%s: boost socket not created", __func__);
         return;
     }
-    memset(&client_addr, 0, sizeof(struct sockaddr_un));
-    client_addr.sun_family = AF_UNIX;
-    snprintf(client_addr.sun_path, UNIX_PATH_MAX, TOUCHBOOST_SOCKET);
+
+    if (!off) {
+        rc = sendto(client_sockfd, "2", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+    } else {
+        rc = sendto(client_sockfd, "3", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+    }
+
+    if (rc < 0) {
+        ALOGE("%s: failed to send: %s", __func__, strerror(errno));
+    }
 }
+
+static void process_video_encode_hint(void *metadata)
+{
+
+    socket_init();
+
+    if (client_sockfd < 0) {
+        ALOGE("%s: boost socket not created", __func__);
+        return;
+    }
+
+    if (metadata) {
+        if (!strncmp(metadata, STATE_ON, sizeof(STATE_ON))) {
+            /* Video encode started */
+            sync_thread(1);
+        } else if (!strncmp(metadata, STATE_OFF, sizeof(STATE_OFF))) {
+            /* Video encode stopped */
+            sync_thread(0);
+        } else
+            return;
+    } else {
+        return;
+    }
+
+}
+
 
 static void touch_boost()
 {
     int rc;
 
     if (client_sockfd < 0) {
-        ALOGE("%s: touchboost socket not created", __func__);
+        ALOGE("%s: boost socket not created", __func__);
         return;
     }
 
@@ -62,9 +120,22 @@ static void touch_boost()
 
 static void power_set_interactive(struct power_module *module, int on)
 {
+    if (last_state == -1) {
+        last_state = on;
+    } else {
+        if (last_state == on)
+            return;
+        else
+            last_state = on;
+    }
+
     ALOGV("%s %s", __func__, (on ? "ON" : "OFF"));
-    if (on)
+    if (on) {
+        sync_thread(0);
         touch_boost();
+    } else {
+        sync_thread(1);
+    }
 }
 
 static void power_hint(struct power_module *module, power_hint_t hint,
@@ -79,6 +150,9 @@ static void power_hint(struct power_module *module, power_hint_t hint,
             ALOGV("POWER_HINT_VSYNC %s", (data ? "ON" : "OFF"));
             break;
 #endif
+        case POWER_HINT_VIDEO_ENCODE:
+            process_video_encode_hint(data);
+            break;
         default:
              break;
     }
