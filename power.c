@@ -31,7 +31,7 @@
 #define STATE_ON "state=1"
 #define STATE_OFF "state=0"
 
-#define BOOST_SOCKET       "/dev/socket/mpdecision/boost"
+#define BOOST_SOCKET       "/dev/socket/pb"
 
 static int client_sockfd;
 static struct sockaddr_un client_addr;
