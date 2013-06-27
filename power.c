@@ -31,6 +31,7 @@
 #define STATE_ON "state=1"
 #define STATE_OFF "state=0"
 
+#define MAX_LENGTH         50
 #define BOOST_SOCKET       "/dev/socket/pb"
 
 static int client_sockfd;
@@ -60,16 +61,22 @@ static void power_init(struct power_module *module)
 static void sync_thread(int off)
 {
     int rc;
+    pid_t client;
+    char data[MAX_LENGTH];
 
     if (client_sockfd < 0) {
         ALOGE("%s: boost socket not created", __func__);
         return;
     }
 
+    client = getpid();
+
     if (!off) {
-        rc = sendto(client_sockfd, "2", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+        snprintf(data, MAX_LENGTH, "2:%d", client);
+        rc = sendto(client_sockfd, data, strlen(data), 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
     } else {
-        rc = sendto(client_sockfd, "3", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+        snprintf(data, MAX_LENGTH, "3:%d", client);
+        rc = sendto(client_sockfd, data, strlen(data), 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
     }
 
     if (rc < 0) {
@@ -106,13 +113,18 @@ static void process_video_encode_hint(void *metadata)
 static void touch_boost()
 {
     int rc;
+    pid_t client;
+    char data[MAX_LENGTH];
 
     if (client_sockfd < 0) {
         ALOGE("%s: boost socket not created", __func__);
         return;
     }
 
-    rc = sendto(client_sockfd, "1", 1, 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
+    client = getpid();
+
+    snprintf(data, MAX_LENGTH, "1:%d", client);
+    rc = sendto(client_sockfd, data, strlen(data), 0, (const struct sockaddr *)&client_addr, sizeof(struct sockaddr_un));
     if (rc < 0) {
         ALOGE("%s: failed to send: %s", __func__, strerror(errno));
     }
