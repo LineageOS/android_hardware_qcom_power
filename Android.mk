@@ -1,4 +1,4 @@
-ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
+ifneq ($(filter msm8960 msm8974,$(TARGET_BOARD_PLATFORM)),)
 ifneq ($(TARGET_USES_CM_POWERHAL),true)
 ifneq ($(TARGET_PROVIDES_POWERHAL),true)
 
