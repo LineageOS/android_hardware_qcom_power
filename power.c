@@ -128,15 +128,15 @@ static void process_video_encode_hint(void *metadata)
         if (!strncmp(metadata, STATE_ON, sizeof(STATE_ON))) {
             /* Video encode started */
             sync_thread(1);
+            enc_boost(1);
         } else if (!strncmp(metadata, STATE_OFF, sizeof(STATE_OFF))) {
             /* Video encode stopped */
             sync_thread(0);
+            enc_boost(0);
         }  else if (!strncmp(metadata, STATE_HDR_ON, sizeof(STATE_HDR_ON))) {
             /* HDR usecase started */
-            enc_boost(1);
         } else if (!strncmp(metadata, STATE_HDR_OFF, sizeof(STATE_HDR_OFF))) {
             /* HDR usecase stopped */
-            enc_boost(0);
         }else
             return;
     } else {
