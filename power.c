@@ -145,6 +145,7 @@ static void process_video_encode_hint(void *metadata)
 }
 
 
+#ifndef NO_TOUCH_BOOST
 static void touch_boost()
 {
     int rc;
@@ -164,6 +165,7 @@ static void touch_boost()
         ALOGE("%s: failed to send: %s", __func__, strerror(errno));
     }
 }
+#endif
 
 static void power_set_interactive(struct power_module *module, int on)
 {
@@ -179,7 +181,9 @@ static void power_set_interactive(struct power_module *module, int on)
     ALOGV("%s %s", __func__, (on ? "ON" : "OFF"));
     if (on) {
         sync_thread(0);
+#ifndef NO_TOUCH_BOOST
         touch_boost();
+#endif
     } else {
         sync_thread(1);
     }
@@ -188,10 +192,12 @@ static void power_set_interactive(struct power_module *module, int on)
 static void power_hint(struct power_module *module, power_hint_t hint,
                        void *data) {
     switch (hint) {
+#ifndef NO_TOUCH_BOOST
         case POWER_HINT_INTERACTION:
             ALOGV("POWER_HINT_INTERACTION");
             touch_boost();
             break;
+#endif
 #if 0
         case POWER_HINT_VSYNC:
             ALOGV("POWER_HINT_VSYNC %s", (data ? "ON" : "OFF"));
