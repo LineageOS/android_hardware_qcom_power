@@ -1,5 +1,5 @@
 ifneq ($(TARGET_PROVIDES_POWERHAL),true)
-ifneq ($(TARGET_USES_CM_POWERHAL),true)
+ifneq ($(TARGET_USES_QCOM_POWERHAL),true)
 ifneq ($(WITH_QC_PERF),true)
 ifneq ($(filter deb flo hammerhead mako,$(TARGET_DEVICE)),)
 
