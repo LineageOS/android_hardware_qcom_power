@@ -1,5 +1,6 @@
-ifneq ($(filter deb flo hammerhead mako,$(TARGET_DEVICE)),)
+ifneq ($(TARGET_USES_CM_POWERHAL),true)
 ifneq ($(WITH_QC_PERF),true)
+ifneq ($(filter deb flo hammerhead mako,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
@@ -25,5 +26,7 @@ LOCAL_CFLAGS += -DTOUCH_BOOST
 endif
 
 include $(BUILD_SHARED_LIBRARY)
+
+endif
 endif
 endif
