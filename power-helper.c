@@ -322,6 +322,11 @@ int __attribute__ ((weak)) set_interactive_override(int UNUSED(on))
     return HINT_NONE;
 }
 
+
+#ifdef SET_INTERACTIVE_EXT
+extern void cm_power_set_interactive_ext(int on);
+#endif
+
 void power_set_interactive(int on)
 {
     char governor[80];
@@ -336,6 +341,10 @@ void power_set_interactive(int on)
         /* Send Display ON hint to perf HAL */
         perf_hint_enable(VENDOR_HINT_DISPLAY_ON, 0);
     }
+
+#ifdef SET_INTERACTIVE_EXT
+    cm_power_set_interactive_ext(on);
+#endif
 
     if (set_interactive_override(on) == HINT_HANDLED) {
         return;
