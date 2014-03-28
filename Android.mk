@@ -1,6 +1,5 @@
-ifneq ($(TARGET_PROVIDES_POWERHAL),true)
-ifneq ($(TARGET_USES_CM_POWERHAL),true)
 ifneq ($(WITH_QC_PERF),true)
+ifeq ($(TARGET_POWERHAL_VARIANT),)
 ifneq ($(filter deb flo hammerhead mako,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
@@ -28,7 +27,6 @@ endif
 
 include $(BUILD_SHARED_LIBRARY)
 
-endif
-endif
-endif
-endif
+endif # TARGET_DEVICE = googly_device
+endif # !TARGET_POWERHAL_VARIANT
+endif # !WITH_QC_PERF
