@@ -1,5 +1,5 @@
 ifneq ($(WITH_QC_PERF),true)
-ifeq ($(TARGET_POWERHAL_VARIANT),)
+ifeq ($(TARGET_POWERHAL_VARIANT),qcom)
 ifneq ($(filter deb flo hammerhead mako,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
