@@ -1,4 +1,4 @@
-ifneq ($(WITH_QC_PERF),true)
+ifneq ($(TARGET_HAVE_QC_PERF),true)
 ifeq ($(TARGET_POWERHAL_VARIANT),)
 ifneq ($(filter deb flo hammerhead mako,$(TARGET_DEVICE)),)
 
@@ -29,4 +29,4 @@ include $(BUILD_SHARED_LIBRARY)
 
 endif # TARGET_DEVICE = googly_device
 endif # !TARGET_POWERHAL_VARIANT
-endif # !WITH_QC_PERF
+endif # !TARGET_HAVE_QC_PERF
