@@ -69,6 +69,12 @@ ifeq ($(call is-board-platform-in-list,msm8916), true)
 LOCAL_SRC_FILES += power-8916.c
 endif
 
+ifeq ($(TARGET_POWER_SET_FEATURE_LIB),)
+    LOCAL_SRC_FILES += power-feature-default.c
+else
+    LOCAL_STATIC_LIBRARIES += $(TARGET_POWER_SET_FEATURE_LIB)
+endif
+
 ifeq ($(TARGET_USES_INTERACTION_BOOST),true)
     LOCAL_CFLAGS += -DINTERACTION_BOOST
 endif

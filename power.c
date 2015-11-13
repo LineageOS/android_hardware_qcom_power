@@ -47,6 +47,7 @@
 #include "hint-data.h"
 #include "performance.h"
 #include "power-common.h"
+#include "power-feature.h"
 
 static int saved_dcvs_cpu0_slack_max = -1;
 static int saved_dcvs_cpu0_slack_min = -1;
@@ -464,6 +465,7 @@ static void set_feature(struct power_module *module, feature_t feature, int stat
         default:
             break;
     }
+    set_device_specific_feature(module, feature, state);
 }
 
 static int power_device_open(const hw_module_t* module, const char* name,
