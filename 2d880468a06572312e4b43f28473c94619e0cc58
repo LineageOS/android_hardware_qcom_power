@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d111de51_9ff562d7",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-10-13T16:40:35Z",
+      "side": 1,
+      "message": "ifneq ($(TARGET_POWER_SET_FEATURE_LIB),)\n    LOCAL_STATIC_LIBRARIES +\u003d $(TARGET_POWER_SET_FEATURE_LIB)\nendif",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 5
+      },
+      "revId": "2d880468a06572312e4b43f28473c94619e0cc58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6f8ec46_7d6fd98e",
+        "filename": "power-feature-default.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-10-13T16:40:35Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "2d880468a06572312e4b43f28473c94619e0cc58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a768b8c_75069a88",
+        "filename": "power-feature.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-10-13T16:40:35Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "2d880468a06572312e4b43f28473c94619e0cc58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aecfcd36_b15e6c8c",
+        "filename": "power.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-10-13T16:40:35Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "2d880468a06572312e4b43f28473c94619e0cc58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b0be158_b90bb60d",
+        "filename": "power.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-10-13T16:40:35Z",
+      "side": 1,
+      "message": "__attribute__((weak))\nvoid set_device_specific_feature(struct power_module *module __unused,\n                                 feature_t feature __unused, int state __unused)\n{\n}",
+      "revId": "2d880468a06572312e4b43f28473c94619e0cc58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
