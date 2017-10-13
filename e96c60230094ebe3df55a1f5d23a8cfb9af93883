@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c0fe13d6_2bbcd9b4",
+        "filename": "power.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-10-13T16:38:32Z",
+      "side": 1,
+      "message": "0.3",
+      "range": {
+        "startLine": 487,
+        "startChar": 48,
+        "endLine": 487,
+        "endChar": 51
+      },
+      "revId": "e96c60230094ebe3df55a1f5d23a8cfb9af93883",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "151b729f_f9b6e678",
         "filename": "power.c",
         "patchSetId": 1
