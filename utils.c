@@ -38,6 +38,7 @@
 #include "list.h"
 #include "hint-data.h"
 #include "power-common.h"
+#include "power-helper.h"
 
 #define LOG_TAG "QCOM PowerHAL"
 #include <utils/Log.h>
