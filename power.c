@@ -47,7 +47,6 @@
 #include "hint-data.h"
 #include "performance.h"
 #include "power-common.h"
-#include "power-feature.h"
 
 static int saved_dcvs_cpu0_slack_max = -1;
 static int saved_dcvs_cpu0_slack_min = -1;
