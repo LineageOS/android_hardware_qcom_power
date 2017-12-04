@@ -103,6 +103,14 @@ ifeq ($(call is-board-platform-in-list,sdm845), true)
 LOCAL_SRC_FILES += power-845.c
 endif
 
+ifeq ($(call is-board-platform-in-list,sdm670), true)
+LOCAL_SRC_FILES += power-670.c
+endif
+
+ifeq ($(call is-board-platform-in-list,qcs605), true)
+LOCAL_SRC_FILES += power-670.c
+endif
+
 ifeq ($(call is-board-platform-in-list, msm8909), true)
 LOCAL_SRC_FILES += power-8909.c
 endif
