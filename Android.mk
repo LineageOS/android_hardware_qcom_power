@@ -115,8 +115,21 @@ ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
     LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
 endif
 
+ifeq ($(TARGET_HAS_LEGACY_POWER_STATS),true)
+    LOCAL_CFLAGS += -DLEGACY_STATS
+endif
+
+ifneq ($(TARGET_WLAN_POWER_STAT),)
+    LOCAL_CFLAGS += -DWLAN_POWER_STAT=\"$(TARGET_WLAN_POWER_STAT)\"
+endif
+
+ifeq ($(TARGET_HAS_NO_WIFI_STATS),true)
+LOCAL_MODULE := android.hardware.power@1.0-service-qti
+LOCAL_INIT_RC := android.hardware.power@1.0-service-qti.rc
+else
 LOCAL_MODULE := android.hardware.power@1.1-service-qti
 LOCAL_INIT_RC := android.hardware.power@1.1-service-qti.rc
+endif
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_OWNER := qcom
 LOCAL_VENDOR_MODULE := true
