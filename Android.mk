@@ -19,10 +19,7 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(call is-vendor-board-platform,QCOM),true)
 
-include $(CLEAR_VARS)
-
-LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_SHARED_LIBRARIES := \
+common_SHARED_LIBRARIES := \
     liblog \
     libcutils \
     libdl \
@@ -30,10 +27,9 @@ LOCAL_SHARED_LIBRARIES := \
     libhidlbase \
     libhidltransport \
     libhardware \
-    libutils \
-    android.hardware.power@1.1
+    libutils
 
-LOCAL_SRC_FILES := \
+common_SRC_FILES := \
     service.cpp \
     Power.cpp \
     power-helper.c \
@@ -43,76 +39,116 @@ LOCAL_SRC_FILES := \
     hint-data.c \
     powerhintparser.c
 
-LOCAL_C_INCLUDES := external/libxml2/include \
+common_C_INCLUDES := external/libxml2/include \
                     external/icu/icu4c/source/common
 
 # Include target-specific files.
 ifeq ($(call is-board-platform-in-list, msm8974), true)
-LOCAL_SRC_FILES += power-8974.c
+common_SRC_FILES += power-8974.c
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8226), true)
-LOCAL_SRC_FILES += power-8226.c
+common_SRC_FILES += power-8226.c
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8610), true)
-LOCAL_SRC_FILES += power-8610.c
+common_SRC_FILES += power-8610.c
 endif
 
 ifeq ($(call is-board-platform-in-list, apq8084), true)
-LOCAL_SRC_FILES += power-8084.c
+common_SRC_FILES += power-8084.c
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8994), true)
-LOCAL_SRC_FILES += power-8994.c
+common_SRC_FILES += power-8994.c
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8996), true)
-LOCAL_SRC_FILES += power-8996.c
+common_SRC_FILES += power-8996.c
 endif
 
 ifeq ($(call is-board-platform-in-list,msm8937), true)
-LOCAL_SRC_FILES += power-8952.c
+common_SRC_FILES += power-8952.c
 endif
 
 ifeq ($(call is-board-platform-in-list,msm8952), true)
-LOCAL_SRC_FILES += power-8952.c
+common_SRC_FILES += power-8952.c
 endif
 
 ifeq ($(call is-board-platform-in-list,msm8953), true)
-LOCAL_SRC_FILES += power-8953.c
+common_SRC_FILES += power-8953.c
 endif
 
 ifeq ($(call is-board-platform-in-list,msm8998 apq8098_latv), true)
-LOCAL_SRC_FILES += power-8998.c
+common_SRC_FILES += power-8998.c
 endif
 
 ifeq ($(call is-board-platform-in-list,sdm660), true)
-LOCAL_SRC_FILES += power-660.c
+common_SRC_FILES += power-660.c
 endif
 
 ifeq ($(call is-board-platform-in-list,sdm845), true)
-LOCAL_SRC_FILES += power-845.c
+common_SRC_FILES += power-845.c
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8909), true)
-LOCAL_SRC_FILES += power-8909.c
+common_SRC_FILES += power-8909.c
 endif
 
 ifeq ($(call is-board-platform-in-list,msm8916), true)
-LOCAL_SRC_FILES += power-8916.c
+common_SRC_FILES += power-8916.c
 endif
 
 ifneq ($(TARGET_POWER_SET_FEATURE_LIB),)
-    LOCAL_STATIC_LIBRARIES += $(TARGET_POWER_SET_FEATURE_LIB)
+    common_STATIC_LIBRARIES := $(TARGET_POWER_SET_FEATURE_LIB)
 endif
 
 ifeq ($(TARGET_USES_INTERACTION_BOOST),true)
-    LOCAL_CFLAGS += -DINTERACTION_BOOST
+    common_CFLAGS += -DINTERACTION_BOOST
 endif
 
 ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
-    LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
+    common_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
+endif
+
+ifeq ($(TARGET_HAS_LEGACY_POWER_STATS),true)
+    common_CFLAGS += -DLEGACY_STATS
+endif
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_SHARED_LIBRARIES := $(common_SHARED_LIBRARIES)
+LOCAL_SHARED_LIBRARIES += \
+    android.hardware.power@1.0
+
+LOCAL_SRC_FILES := $(common_SRC_FILES)
+LOCAL_C_INCLUDES := $(common_C_INCLUDES)
+LOCAL_STATIC_LIBRARIES += $(common_STATIC_LIBRARIES)
+LOCAL_CFLAGS += $(common_CFLAGS) -DV1_0_HAL
+LOCAL_MODULE := android.hardware.power@1.0-service-qti
+LOCAL_INIT_RC := android.hardware.power@1.0-service-qti.rc
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_OWNER := qcom
+LOCAL_VENDOR_MODULE := true
+LOCAL_HEADER_LIBRARIES := libhardware_headers
+include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_SHARED_LIBRARIES := $(common_SHARED_LIBRARIES)
+LOCAL_SHARED_LIBRARIES += \
+    android.hardware.power@1.1
+
+LOCAL_SRC_FILES := $(common_SRC_FILES)
+
+LOCAL_C_INCLUDES := $(common_C_INCLUDES)
+LOCAL_STATIC_LIBRARIES += $(common_STATIC_LIBRARIES)
+LOCAL_CFLAGS += $(common_CFLAGS) -DV1_1_HAL
+
+ifneq ($(TARGET_WLAN_POWER_STAT),)
+    LOCAL_CFLAGS += -DWLAN_POWER_STAT=\"$(TARGET_WLAN_POWER_STAT)\"
 endif
 
 LOCAL_MODULE := android.hardware.power@1.1-service-qti
