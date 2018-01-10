@@ -106,6 +106,16 @@ enum wlan_power_params {
 };
 #endif
 
+enum voter_id {
+    APSS,
+    MPSS,
+    ADSP,
+    SLPI,
+
+    //Don't add any lines after that line
+    VOTER_COUNT
+};
+
 #define PLATFORM_SLEEP_MODES_COUNT RPM_MODE_MAX
 
 #define MAX_RPM_PARAMS 2
