@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2017 The Android Open Source Project
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2017-2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@
 #else
 #define LOG_TAG "android.hardware.power@1.1-service-qti"
 #endif
+
+#define LOG_NIDEBUG 0
 
 #include <android/log.h>
 #include <utils/Log.h>
@@ -226,6 +228,34 @@ Return<void> Power::powerHintAsync(PowerHint hint, int32_t data) {
     return powerHint(hint, data);
 }
 #endif
+
+Return<int32_t> Power::getFeature(LineageFeature feature)  {
+    ALOGD("%s", __func__);
+    return 0;
+}
+
+status_t Power::registerAsSystemService() {
+    status_t ret = 0;
+
+    ret = IPower::registerAsService();
+    if (ret != 0) {
+        ALOGE("Failed to register IPower (%d)", ret);
+        goto fail;
+    } else {
+        ALOGI("Successfully registered IPower");
+    }
+
+    ret = ILineagePower::registerAsService();
+    if (ret != 0) {
+        ALOGE("Failed to register ILineagePower (%d)", ret);
+        goto fail;
+    } else {
+        ALOGI("Successfully registered ILineagePower");
+    }
+
+fail:
+    return ret;
+}
 
 }  // namespace implementation
 }  // namespace V1_0/1
