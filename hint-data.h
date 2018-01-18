@@ -51,6 +51,7 @@
 
 #define VR_MODE_SUSTAINED_PERF_HINT    (0x1301)
 
+#define DEFAULT_PROFILE_HINT_ID         AOSP_DELTA + POWER_HINT_SET_PROFILE
 
 struct hint_data {
     unsigned long hint_id; /* This is our key. */
