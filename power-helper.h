@@ -132,6 +132,7 @@ int extract_platform_stats(uint64_t *list);
 #ifndef V1_0_HAL
 int extract_wlan_stats(uint64_t *list);
 #endif
+int __attribute__ ((weak)) get_number_of_profiles();
 
 #ifdef __cplusplus
 }
