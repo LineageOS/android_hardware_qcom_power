@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a844ca7e_14f519de",
+        "filename": "power-8996.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2018-02-07T11:21:14Z",
+      "side": 1,
+      "message": "never triggered",
+      "range": {
+        "startLine": 222,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 9
+      },
+      "revId": "ee0d1482301fd55709c1896d5f9e8238c1873041",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
