@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b87f612_e7fbdc7e",
+        "filename": "power-helper.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2018-02-07T11:21:02Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 14
+      },
+      "revId": "6d92c39a829353d690b084a9d6c11576d461e48e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9decf0ac_3259cb92",
+        "filename": "service.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2018-02-07T11:21:02Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "6d92c39a829353d690b084a9d6c11576d461e48e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
