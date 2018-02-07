@@ -19,6 +19,11 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(call is-vendor-board-platform,QCOM),true)
 
+# Filter power HAL log calls
+ifeq ($(TARGET_BUILD_VARIANT), eng)
+ENG_BUILD := true
+endif
+
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_RELATIVE_PATH := hw

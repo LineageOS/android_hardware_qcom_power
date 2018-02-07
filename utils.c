@@ -224,8 +224,10 @@ void interaction(int duration, int num_args, int opt_list[])
     if (qcopt_handle) {
         if (perf_lock_acq) {
             lock_handle = perf_lock_acq(lock_handle, duration, opt_list, num_args);
+#ifdef ENG_BUILD
             if (lock_handle == -1)
                 ALOGE("Failed to acquire lock.");
+#endif
         }
     }
 #endif
@@ -239,8 +241,10 @@ int interaction_with_handle(int lock_handle, int duration, int num_args, int opt
     if (qcopt_handle) {
         if (perf_lock_acq) {
             lock_handle = perf_lock_acq(lock_handle, duration, opt_list, num_args);
+#ifdef ENG_BUILD
             if (lock_handle == -1)
                 ALOGE("Failed to acquire lock.");
+#endif
         }
     }
     return lock_handle;
@@ -258,8 +262,10 @@ int perf_hint_enable(int hint_id , int duration)
     if (qcopt_handle) {
         if (perf_hint) {
             lock_handle = perf_hint(hint_id, NULL, duration, -1);
+#ifdef ENG_BUILD
             if (lock_handle == -1)
                 ALOGE("Failed to acquire lock.");
+#endif
         }
     }
     return lock_handle;
@@ -280,7 +286,9 @@ void perform_hint_action(int hint_id, int resource_values[], int num_resources)
                     num_resources);
 
             if (lock_handle == -1) {
+#ifdef ENG_BUILD
                 ALOGE("Failed to acquire lock.");
+#endif
             } else {
                 /* Add this handle to our internal hint-list. */
                 struct hint_data *new_hint =
