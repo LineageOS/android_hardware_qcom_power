@@ -55,7 +55,11 @@
 static int current_power_profile = PROFILE_BALANCED;
 
 int get_number_of_profiles() {
+#ifdef INTERACTION_BOOST
     return 5;
+#else
+    return 0;
+#endif
 }
 
 static int profile_high_performance[] = {

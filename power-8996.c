@@ -80,7 +80,11 @@ static int profile_bias_performance[] = {
 };
 
 int get_number_of_profiles() {
+#ifdef INTERACTION_BOOST
     return 5;
+#else
+    return 0;
+#endif
 }
 
 static void set_power_profile(int profile) {
