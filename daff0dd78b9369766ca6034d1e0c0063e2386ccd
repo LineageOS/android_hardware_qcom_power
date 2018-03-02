@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "603cab2f_11124853",
+        "filename": "power-8952.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 18581
+      },
+      "writtenOn": "2018-03-02T19:03:04Z",
+      "side": 0,
+      "message": "resource_value --\u003e resource_values ?",
+      "revId": "daff0dd78b9369766ca6034d1e0c0063e2386ccd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
