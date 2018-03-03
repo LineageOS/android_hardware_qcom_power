@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "083c339e_9395cbf4",
+        "filename": "power-8952.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-03T05:53:18Z",
+      "side": 1,
+      "message": "wtf, how is this not a compile failure for me.",
+      "revId": "22dd9f74a852d7ccec2176793b9a0a642da711d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
