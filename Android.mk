@@ -142,14 +142,14 @@ endif
 ifeq ($(TARGET_HAS_NO_WIFI_STATS),true)
 LOCAL_MODULE := android.hardware.power@1.0-service-qti
 LOCAL_INIT_RC := android.hardware.power@1.0-service-qti.rc
-LOCAL_SHARED_LIBRARIES += android.hardware.power@1.0
+LOCAL_SHARED_LIBRARIES += android.hardware.power@1.0_vendor
 LOCAL_CFLAGS += -DV1_0_HAL
 else
 LOCAL_MODULE := android.hardware.power@1.1-service-qti
 LOCAL_INIT_RC := android.hardware.power@1.1-service-qti.rc
 LOCAL_SHARED_LIBRARIES += android.hardware.power@1.1
 endif
-LOCAL_SHARED_LIBRARIES += vendor.lineage.power@1.0
+LOCAL_SHARED_LIBRARIES += vendor.lineage.power@1.0_vendor
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_OWNER := qcom
 LOCAL_VENDOR_MODULE := true
