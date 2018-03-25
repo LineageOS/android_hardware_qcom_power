@@ -48,8 +48,6 @@
 #include "performance.h"
 #include "power-common.h"
 
-static int camera_hint_ref_count;
-
 static int current_power_profile = PROFILE_BALANCED;
 
 static int profile_high_performance[] = {
@@ -262,7 +260,6 @@ static int process_video_encode_hint(void *metadata)
 int power_hint_override(power_hint_t hint, void *data)
 {
     int ret_val = HINT_NONE;
-    int duration;
 
     if (hint == POWER_HINT_SET_PROFILE) {
         set_power_profile(*(int32_t *)data);
