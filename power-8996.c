@@ -266,11 +266,12 @@ int power_hint_override(power_hint_t hint, void *data)
         return HINT_HANDLED;
     }
 
-    /* Skip other hints in power save mode */
-    if (current_power_profile == PROFILE_POWER_SAVE)
+    // Skip other hints in custom power modes
+    if (current_power_profile != PROFILE_BALANCED) {
         return HINT_HANDLED;
+    }
 
-    switch(hint) {
+    switch (hint) {
         case POWER_HINT_VIDEO_ENCODE:
             ret_val = process_video_encode_hint(data);
             break;
