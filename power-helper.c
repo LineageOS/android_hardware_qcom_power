@@ -109,6 +109,8 @@ static const char *wlan_param_names[] = {
     "deep_sleep_enter_counter",
     "last_deep_sleep_enter_tstamp_ms"
 };
+
+static int no_rpm_master_stats_file;
 #else
 /* Use these stats on nougat kernels and forward */
 const char *rpm_stat_params[MAX_RPM_PARAMS] = {
@@ -662,11 +664,20 @@ int extract_platform_stats(uint64_t *list) {
         for (size_t i=0; i < RPM_PARAM_COUNT; i++)
             list[i] = 0;
     }
+    /*
+     *  Some older platforms like apq8084 don't have the rpm_master_stats
+     *  file.  Don't try again after extract_stats failed once with ENOENT
+     *  so as not to clutter logcat uselessly.
+     */
+    if (no_rpm_master_stats_file)
+        return 0;
     ret = extract_stats(list + RPM_PARAM_COUNT, RPM_MASTER_STAT,
                         rpm_master_param_names, PLATFORM_PARAM_COUNT - RPM_PARAM_COUNT, true);
     if (ret) {
         for (size_t i=RPM_PARAM_COUNT; i < PLATFORM_PARAM_COUNT; i++)
         list[i] = 0;
+        if (ret == -ENOENT)
+            no_rpm_master_stats_file = 1;
     }
     return 0;
 }
