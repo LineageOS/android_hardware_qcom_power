@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b842e51a_30efadef",
+        "filename": "utils.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-04-10T16:07:34Z",
+      "side": 1,
+      "message": "You can fix the spacing here as well since we are touching this line",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "c4059f41ae2728cc5e3f1d8524f6aa4ec8c3c346",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
