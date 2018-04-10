@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82a922ef_861ff3be",
+        "filename": "power-helper.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-04-10T16:12:29Z",
+      "side": 1,
+      "message": "Make it a bool instead.",
+      "range": {
+        "startLine": 113,
+        "startChar": 7,
+        "endLine": 113,
+        "endChar": 10
+      },
+      "revId": "0a7c132ff2208c2a5b160bbc4e22e4a25974e65c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
