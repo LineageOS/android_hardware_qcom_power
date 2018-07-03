@@ -74,6 +74,13 @@ Return<void> Power::setFeature(Feature feature, bool activate)  {
     return Void();
 }
 
+#ifdef NO_STATS
+Return<void> Power::getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb) {
+    hidl_vec<PowerStatePlatformSleepState> states;
+    states.resize(0);
+    _hidl_cb(states, Status::SUCCESS);
+    return Void();
+#else
 Return<void> Power::getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb) {
     hidl_vec<PowerStatePlatformSleepState> states;
     uint64_t stats[MAX_PLATFORM_STATS * MAX_RPM_PARAMS] = {0};
@@ -169,6 +176,7 @@ done:
     _hidl_cb(states, Status::SUCCESS);
     return Void();
 }
+#endif
 
 #ifndef V1_0_HAL
 // Methods from ::android::hardware::power::V1_1::IPower follow.
