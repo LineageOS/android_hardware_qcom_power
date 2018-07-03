@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01602425_b339344d",
+        "filename": "Power.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-03T19:01:54Z",
+      "side": 1,
+      "message": "I\u0027d prefer to invert the if check, as it makes the no stats logic explicit.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 16
+      },
+      "revId": "9b2e9dd2ee178ee5cc035e6f7f923c6b7616c222",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
