@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015,2018 The Linux Foundation. All rights reserved.
  * Copyright (C) 2018 The LineageOS Project
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,6 +37,7 @@
 #include <fcntl.h>
 #include <dlfcn.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define LOG_TAG "QCOM PowerHAL"
 #include <log/log.h>
@@ -50,6 +51,9 @@
 #include "power-common.h"
 
 static int video_encode_hint_sent;
+
+static int display_fd;
+#define SYS_DISPLAY_PWR "/sys/kernel/hbtp/display_pwr"
 
 static int current_power_profile = PROFILE_BALANCED;
 
@@ -212,6 +216,13 @@ int power_hint_override(power_hint_t hint, void *data)
 int set_interactive_override(int on)
 {
     char governor[80];
+    int rc = 0;
+
+    static const char *display_on = "1";
+    static const char *display_off = "0";
+    char err_buf[80];
+    static int init_interactive_hint = 0;
+    static int set_i_count = 0;
 
     if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU0) == -1) {
         if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU1) == -1) {
@@ -241,5 +252,39 @@ int set_interactive_override(int on)
             undo_hint_action(DISPLAY_STATE_HINT_ID);
         }
     }
+
+    set_i_count ++;
+    ALOGI("Got set_interactive hint on= %d, count= %d\n", on, set_i_count);
+
+    if (init_interactive_hint == 0)
+    {
+        //First time the display is turned off
+        display_fd = TEMP_FAILURE_RETRY(open(SYS_DISPLAY_PWR, O_RDWR));
+        if (display_fd < 0) {
+            strerror_r(errno,err_buf,sizeof(err_buf));
+            ALOGE("Error opening %s: %s\n", SYS_DISPLAY_PWR, err_buf);
+            return HINT_HANDLED;
+        }
+        else
+            init_interactive_hint = 1;
+    }
+    else
+        if (!on ) {
+            /* Display off. */
+            rc = TEMP_FAILURE_RETRY(write(display_fd, display_off, strlen(display_off)));
+            if (rc < 0) {
+                strerror_r(errno,err_buf,sizeof(err_buf));
+                ALOGE("Error writing %s to  %s: %s\n", display_off, SYS_DISPLAY_PWR, err_buf);
+            }
+        }
+        else {
+            /* Display on */
+            rc = TEMP_FAILURE_RETRY(write(display_fd, display_on, strlen(display_on)));
+            if (rc < 0) {
+                strerror_r(errno,err_buf,sizeof(err_buf));
+                ALOGE("Error writing %s to  %s: %s\n", display_on, SYS_DISPLAY_PWR, err_buf);
+            }
+        }
+
     return HINT_HANDLED;
 }
