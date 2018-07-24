@@ -160,6 +160,7 @@ int power_hint_override(power_hint_t hint, void *data)
     long long elapsed_time;
     static int s_previous_duration = 0;
     int duration;
+    char governor[80];
 
     if (hint == POWER_HINT_SET_PROFILE) {
         set_power_profile(*(int32_t *)data);
@@ -174,6 +175,13 @@ int power_hint_override(power_hint_t hint, void *data)
 
     switch (hint) {
         case POWER_HINT_INTERACTION:
+            if (get_scaling_governor(governor, sizeof(governor)) == -1) {
+                ALOGE("Can't obtain scaling governor.");
+            } else if (is_interactive_governor(governor)) {
+                sysfs_write(INTERACTIVE_BOOSTPULSE, "1");
+                return HINT_HANDLED;
+            }
+
             duration = 500; // 500ms by default
             if (data) {
                 int input_duration = *((int*)data);
