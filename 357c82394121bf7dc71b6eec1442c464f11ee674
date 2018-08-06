@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c31cc037_55c92073",
+        "filename": "power-8084.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-08-06T19:57:30Z",
+      "side": 1,
+      "message": "2",
+      "range": {
+        "startLine": 138,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 8
+      },
+      "revId": "357c82394121bf7dc71b6eec1442c464f11ee674",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de23d53c_03237d98",
+        "filename": "power-8084.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-08-06T19:57:30Z",
+      "side": 1,
+      "message": "3",
+      "range": {
+        "startLine": 139,
+        "startChar": 7,
+        "endLine": 139,
+        "endChar": 8
+      },
+      "revId": "357c82394121bf7dc71b6eec1442c464f11ee674",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
