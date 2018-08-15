@@ -114,7 +114,7 @@ LOCAL_SRC_FILES += power-710.c
 endif
 
 ifeq ($(call is-board-platform-in-list,msmnile), true)
-LOCAL_SRC_FILES += power-8150.c
+LOCAL_SRC_FILES += power-msmnile.c
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8909), true)
