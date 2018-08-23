@@ -164,9 +164,22 @@ int power_hint_override(power_hint_t hint, void *data)
     long long elapsed_time;
     static int s_previous_duration = 0;
     int duration;
+    char mpdecision_running[PROPERTY_VALUE_MAX] = { 0 };
 
     if (hint == POWER_HINT_SET_PROFILE) {
-        set_power_profile(*(int32_t *)data);
+
+        // Wait up to a second for mpdecision to get started to avoid a race
+        for (int i = 0; i < 10; ++i) {
+            property_get("init.svc.mpdecision", mpdecision_running, NULL);
+            if (strcmp (mpdecision_running, "running") == 0)
+                break;
+            usleep (100000);
+        }
+        if (strcmp (mpdecision_running, "running") == 0)
+            set_power_profile(*(int32_t *)data);
+        else
+            ALOGE("mpdecision not started in a timely manner.");
+
         return HINT_HANDLED;
     }
 
