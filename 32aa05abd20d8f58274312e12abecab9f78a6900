@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "113592a1_ea871c6d",
+        "filename": "power-8084.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-08-26T16:36:25Z",
+      "side": 1,
+      "message": "Use spaces not tabs",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 1
+      },
+      "revId": "32aa05abd20d8f58274312e12abecab9f78a6900",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
