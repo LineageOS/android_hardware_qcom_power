@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef6f8beb_467c00f6",
+        "filename": "power-8916.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-09-03T14:20:49Z",
+      "side": 1,
+      "message": "Spaces",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 2
+      },
+      "revId": "b97148532f1d55e135ec513270c2c5994ef06b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
