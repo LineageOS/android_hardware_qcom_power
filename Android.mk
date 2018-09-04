@@ -53,18 +53,22 @@ else
 # Include target-specific files.
 ifeq ($(call is-board-platform-in-list, msm8974), true)
 LOCAL_SRC_FILES += power-8974.c
+_HAS_MP_DECISION := true
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8226), true)
 LOCAL_SRC_FILES += power-8226.c
+_HAS_MP_DECISION := true
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8610), true)
 LOCAL_SRC_FILES += power-8610.c
+_HAS_MP_DECISION := true
 endif
 
 ifeq ($(call is-board-platform-in-list, apq8084), true)
 LOCAL_SRC_FILES += power-8084.c
+_HAS_MP_DECISION := true
 endif
 
 ifeq ($(call is-board-platform-in-list, msm8994), true)
@@ -156,12 +160,20 @@ endif
 
 ifeq ($(TARGET_HAS_NO_WIFI_STATS),true)
 LOCAL_MODULE := android.hardware.power@1.0-service-qti
-LOCAL_INIT_RC := android.hardware.power@1.0-service-qti.rc
+ifeq ($(_HAS_MP_DECISION),true)
+    LOCAL_INIT_RC := android.hardware.power@1.0-service-mpd.rc
+else
+    LOCAL_INIT_RC := android.hardware.power@1.0-service-qti.rc
+endif
 LOCAL_SHARED_LIBRARIES += android.hardware.power@1.0
 LOCAL_CFLAGS += -DV1_0_HAL
 else
 LOCAL_MODULE := android.hardware.power@1.1-service-qti
-LOCAL_INIT_RC := android.hardware.power@1.1-service-qti.rc
+ifeq ($(_HAS_MP_DECISION),true)
+    LOCAL_INIT_RC := android.hardware.power@1.1-service-mpd.rc
+else
+    LOCAL_INIT_RC := android.hardware.power@1.1-service-qti.rc
+endif
 LOCAL_SHARED_LIBRARIES += android.hardware.power@1.1
 endif
 LOCAL_SHARED_LIBRARIES += vendor.lineage.power@1.0_vendor
