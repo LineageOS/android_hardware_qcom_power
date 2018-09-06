@@ -68,7 +68,7 @@ static int profile_high_performance[] = {
 };
 
 static int profile_power_save[] = {
-    CPUS_ONLINE_MAX_LIMIT_BIG, 0x1,
+    CPUS_ONLINE_MAX_BIG, 0x1,
     MAX_FREQ_BIG_CORE_0, 0x3bf,
     MAX_FREQ_LITTLE_CORE_0, 0x300,
 };
@@ -79,7 +79,7 @@ static int profile_bias_power[] = {
 };
 
 static int profile_bias_performance[] = {
-    CPUS_ONLINE_MAX_LIMIT_BIG, 0x4,
+    CPUS_ONLINE_MAX_BIG, 0x4,
     MIN_FREQ_BIG_CORE_0, 0x540,
 };
 
