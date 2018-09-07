@@ -22,6 +22,30 @@
       "revId": "c96a3ea8d0c9d854da361170560636d3c57cf65e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "462ba918_0781bd0b",
+        "filename": "power-8084.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 15402
+      },
+      "writtenOn": "2018-09-07T08:07:23Z",
+      "side": 1,
+      "message": "I don\u0027t think so.  HINT_NONE means \"Hint not handled by\npower_hint_override()\".  The effect right now is that\nthe caller, power_hint(), runs an additional switch\nstatement.  For no good reason, because HINT_NONE isn\u0027t\ntrue; the hint *has* been handled, it just occured an error.\n\nIn theory, there should be another return value along\nthe lines of HINT_FAILED with the meaning \"Hint handled\nbut an error occured\".  power_hint() and its caller\nPower::powerHint() could propagate this up the call\nchain and the framework could handle a failure (or\ndeign to ignore it).",
+      "parentUuid": "5eb16d02_7b8f2b95",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 75
+      },
+      "revId": "c96a3ea8d0c9d854da361170560636d3c57cf65e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
