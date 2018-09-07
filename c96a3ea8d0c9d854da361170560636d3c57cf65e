@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eb16d02_7b8f2b95",
+        "filename": "power-8084.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2018-09-07T03:36:06Z",
+      "side": 1,
+      "message": "return HINT_NONE instead?",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 75
+      },
+      "revId": "c96a3ea8d0c9d854da361170560636d3c57cf65e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
