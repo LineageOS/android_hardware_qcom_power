@@ -75,7 +75,7 @@ enum stats_type {
     VOTER_SPSS,
     MAX_PLATFORM_STATS,
 
-#ifndef V1_0_HAL
+#ifndef NO_WLAN_STATS
     //WLAN Stats
     WLAN_POWER_DEBUG_STATS = 0,
     MAX_WLAN_STATS,
@@ -83,15 +83,18 @@ enum stats_type {
 };
 
 enum subsystem_type {
-#ifndef V1_0_HAL
+#ifndef NO_WLAN_STATS
     SUBSYSTEM_WLAN = 0,
+#else
+    // We need the COUNT to be 0 for this, so start at -1 if theres no WLAN
+    SUBSYSTEM_PLACE_HOLDER = -1,
 #endif
 
     //Don't add any lines after this line
     SUBSYSTEM_COUNT
 };
 
-#ifndef V1_0_HAL
+#ifndef NO_WLAN_STATS
 enum wlan_sleep_states {
     WLAN_STATE_ACTIVE = 0,
     WLAN_STATE_DEEP_SLEEP,
@@ -134,7 +137,7 @@ void power_hint(power_hint_t hint, void *data);
 void power_set_interactive(int on);
 void set_feature(feature_t feature, int state);
 int extract_platform_stats(uint64_t *list);
-#ifndef V1_0_HAL
+#ifndef NO_WLAN_STATS
 int extract_wlan_stats(uint64_t *list);
 #endif
 int __attribute__ ((weak)) get_number_of_profiles();
