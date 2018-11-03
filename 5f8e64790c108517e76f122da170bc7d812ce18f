@@ -22,6 +22,30 @@
       "revId": "5f8e64790c108517e76f122da170bc7d812ce18f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a51150ea_ec45361a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7880
+      },
+      "writtenOn": "2018-11-03T05:34:23Z",
+      "side": 1,
+      "message": "It worked the same in LineageOS 15.1, at least when the HAL was still stored in device/qcom/common.",
+      "parentUuid": "af97925b_d85f4b73",
+      "range": {
+        "startLine": 16,
+        "startChar": 39,
+        "endLine": 16,
+        "endChar": 53
+      },
+      "revId": "5f8e64790c108517e76f122da170bc7d812ce18f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
