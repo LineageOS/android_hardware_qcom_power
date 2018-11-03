@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af97925b_d85f4b73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2018-11-03T04:45:17Z",
+      "side": 1,
+      "message": "CyanogenMod 14.1",
+      "range": {
+        "startLine": 16,
+        "startChar": 39,
+        "endLine": 16,
+        "endChar": 53
+      },
+      "revId": "5f8e64790c108517e76f122da170bc7d812ce18f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
