@@ -16,6 +16,24 @@
       "revId": "9a01a5c5a8887ea6bcf4a73bd9c9dbe021993363",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd7fcc1c_1371b4c5",
+        "filename": "power-helper.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-12-02T17:56:50Z",
+      "side": 0,
+      "message": "It will create logspam in case of 8996.",
+      "parentUuid": "bc64fb5b_751bed0a",
+      "revId": "9a01a5c5a8887ea6bcf4a73bd9c9dbe021993363",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
