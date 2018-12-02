@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc64fb5b_751bed0a",
+        "filename": "power-helper.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-12-02T17:49:23Z",
+      "side": 0,
+      "message": "Might be better to keep the case and just add ALOGI like above?",
+      "revId": "9a01a5c5a8887ea6bcf4a73bd9c9dbe021993363",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
