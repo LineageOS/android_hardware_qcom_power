@@ -31,6 +31,7 @@
 #define LOG_NIDEBUG 0
 
 #include <errno.h>
+#include <time.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -48,6 +49,10 @@
 #include "hint-data.h"
 #include "performance.h"
 #include "power-common.h"
+
+const int DEFAULT_INTERACTIVE_DURATION = 500; /* ms */
+const int MIN_FLING_DURATION = 1500; /* ms */
+const int MAX_INTERACTIVE_DURATION = 5000; /* ms */
 
 static int video_encode_hint_sent;
 
@@ -191,6 +196,58 @@ static void process_video_encode_hint(void *metadata)
     }
 }
 
+static int process_activity_launch_hint(void *UNUSED(data))
+{
+    if (current_mode != NORMAL_MODE) {
+        ALOGV("%s: ignoring due to other active perf hints", __func__);
+    } else {
+        perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, -1, LAUNCH_BOOST_V1);
+    }
+    return HINT_HANDLED;
+}
+
+static int process_interaction_hint(void *data)
+{
+    static struct timespec s_previous_boost_timespec;
+    static int s_previous_duration = 0;
+
+    struct timespec cur_boost_timespec;
+    long long elapsed_time;
+    int duration = DEFAULT_INTERACTIVE_DURATION;
+
+    if (current_mode != NORMAL_MODE) {
+        ALOGV("%s: ignoring due to other active perf hints", __func__);
+        return HINT_HANDLED;
+    }
+
+    if (data) {
+        int input_duration = *((int*)data);
+        if (input_duration > duration) {
+            duration = (input_duration > MAX_INTERACTIVE_DURATION) ?
+                    MAX_INTERACTIVE_DURATION : input_duration;
+        }
+    }
+
+    clock_gettime(CLOCK_MONOTONIC, &cur_boost_timespec);
+
+    elapsed_time = calc_timespan_us(s_previous_boost_timespec, cur_boost_timespec);
+    // don't hint if previous hint's duration covers this hint's duration
+    if ((s_previous_duration * 1000) > (elapsed_time + duration * 1000)) {
+        return HINT_HANDLED;
+    }
+    s_previous_boost_timespec = cur_boost_timespec;
+    s_previous_duration = duration;
+
+    if (duration >= MIN_FLING_DURATION) {
+        // Use launch boost resources for fling boost
+        perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, -1, LAUNCH_BOOST_V1);
+    } else {
+        perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
+    }
+
+    return HINT_HANDLED;
+}
+
 int power_hint_override(power_hint_t hint, void *data)
 {
     if (hint == POWER_HINT_SET_PROFILE) {
@@ -209,6 +266,12 @@ int power_hint_override(power_hint_t hint, void *data)
         case POWER_HINT_VIDEO_ENCODE:
             process_video_encode_hint(data);
             return HINT_HANDLED;
+        case POWER_HINT_INTERACTION:
+            ret_val = process_interaction_hint(data);
+            break;
+        case POWER_HINT_LAUNCH:
+            ret_val = process_activity_launch_hint(data);
+            break;
         default:
             break;
     }
