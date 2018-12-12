@@ -54,6 +54,9 @@
 
 #define DEFAULT_PROFILE_HINT_ID         (0xFF00)
 
+#define VENDOR_HINT_FIRST_LAUNCH_BOOST  0x00001081
+#define VENDOR_HINT_SCROLL_BOOST        0x00001080
+
 struct hint_data {
     unsigned long hint_id; /* This is our key. */
     unsigned long perflock_handle;
