@@ -187,6 +187,16 @@ static int process_video_encode_hint(void *metadata)
     return HINT_NONE;
 }
 
+static int process_activity_launch_hint(void *UNUSED(data))
+{
+    if (current_mode != NORMAL_MODE) {
+        ALOGV("%s: ignoring due to other active perf hints", __func__);
+    } else {
+        perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, -1, LAUNCH_BOOST_V1);
+    }
+    return HINT_HANDLED;
+}
+
 int power_hint_override(power_hint_t hint, void *data)
 {
     int ret_val = HINT_NONE;
@@ -209,6 +219,9 @@ int power_hint_override(power_hint_t hint, void *data)
             interaction(duration, ARRAY_SIZE(resources), resources);
             ret_val = HINT_HANDLED;
         }
+            break;
+        case POWER_HINT_LAUNCH:
+            ret_val = process_activity_launch_hint(data);
             break;
         default:
             break;
