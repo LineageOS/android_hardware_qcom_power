@@ -50,11 +50,15 @@
 #define SOC_ID_0 "/sys/devices/soc0/soc_id"
 #define SOC_ID_1 "/sys/devices/system/soc/soc0/id"
 
-const char *scaling_gov_path[4] = {
+const char *scaling_gov_path[8] = {
     "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
     "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor",
     "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor",
-    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor"
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor",
+    "/sys/devices/system/cpu/cpu4/cpufreq/scaling_governor",
+    "/sys/devices/system/cpu/cpu5/cpufreq/scaling_governor",
+    "/sys/devices/system/cpu/cpu6/cpufreq/scaling_governor",
+    "/sys/devices/system/cpu/cpu7/cpufreq/scaling_governor"
 };
 
 #define PERF_HAL_PATH "libqti-perfd-client.so"
@@ -186,21 +190,15 @@ int sysfs_write(const char *path, char *s)
 
 int get_scaling_governor(char governor[], int size)
 {
-    if (sysfs_read(SCALING_GOVERNOR_PATH, governor,
-                size) == -1) {
-        // Can't obtain the scaling governor. Return.
-        return -1;
-    } else {
-        // Strip newline at the end.
-        int len = strlen(governor);
-
-        len--;
-
-        while (len >= 0 && (governor[len] == '\n' || governor[len] == '\r'))
-            governor[len--] = '\0';
+    for (size_t i = 0; i < ARRAY_SIZE(scaling_gov_path); i++) {
+        if (get_scaling_governor_check_cores(governor,
+                size, i) == 0) {
+            // Obtain the scaling governor successfully. Return.
+            return 0;
+        }
     }
 
-    return 0;
+    return -1;
 }
 
 int get_scaling_governor_check_cores(char governor[], int size,int core_num)

@@ -135,15 +135,9 @@ static void process_video_encode_hint(void *metadata)
     char governor[80];
     struct video_encode_metadata_t video_encode_metadata;
 
-    if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU0) == -1) {
-        if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU1) == -1) {
-            if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU2) == -1) {
-                if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU3) == -1) {
-                    ALOGE("Can't obtain scaling governor.");
-                    return;
-                }
-            }
-        }
+    if (get_scaling_governor(governor, sizeof(governor)) == -1) {
+        ALOGE("Can't obtain scaling governor.");
+        return;
     }
 
     if (!metadata) {
@@ -213,15 +207,9 @@ int set_interactive_override(int on)
 {
     char governor[80];
 
-    if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU0) == -1) {
-        if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU1) == -1) {
-            if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU2) == -1) {
-                if (get_scaling_governor_check_cores(governor, sizeof(governor), CPU3) == -1) {
-                    ALOGE("Can't obtain scaling governor.");
-                    return HINT_NONE;
-                }
-            }
-        }
+    if (get_scaling_governor(governor, sizeof(governor)) == -1) {
+        ALOGE("Can't obtain scaling governor.");
+        return HINT_NONE;
     }
 
     if (!on) {
