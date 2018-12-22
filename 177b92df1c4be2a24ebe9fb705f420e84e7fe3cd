@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f99c8b34_d19fb350",
+        "filename": "power-845.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-12-22T17:29:58Z",
+      "side": 1,
+      "message": "I know that no one is currently building 845 power HAL from this repo, but we should also change this.",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 18
+      },
+      "revId": "177b92df1c4be2a24ebe9fb705f420e84e7fe3cd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
