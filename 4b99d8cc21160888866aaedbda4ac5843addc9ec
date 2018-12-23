@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33c4a65e_e364a147",
+        "filename": "power-845.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2018-12-23T13:13:18Z",
+      "side": 1,
+      "message": "100ms instead?",
+      "range": {
+        "startLine": 208,
+        "startChar": 19,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
