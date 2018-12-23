@@ -46,6 +46,23 @@
       "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c4ad0de_91c166c9",
+        "filename": "power-8998.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2018-12-23T15:27:18Z",
+      "side": 1,
+      "message": "Frequencies are not held at the desired frequencies for two seconds after launch. Who can confirm ? With a pre-prepared duration, a boost still occurs.",
+      "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
