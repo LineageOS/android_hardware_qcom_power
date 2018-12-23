@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d92da705_b49daa3c",
+        "filename": "hint-data.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 18836
+      },
+      "writtenOn": "2018-12-23T17:13:02Z",
+      "side": 1,
+      "message": "Shouldn\u0027t these should go into performance.h instead?",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 2
+      },
+      "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "33c4a65e_e364a147",
         "filename": "power-845.c",
         "patchSetId": 8
