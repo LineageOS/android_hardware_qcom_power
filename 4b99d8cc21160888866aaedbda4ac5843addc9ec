@@ -104,6 +104,24 @@
       "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e45b6da7_2b53f4c2",
+        "filename": "power-8998.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2018-12-24T06:49:03Z",
+      "side": 1,
+      "message": "I know about platform dependency. However, on my device (nx563j) launch boost does not occur, if you do not set the duration yourself. I want to make sure that this is only my problem and I can fix it for my device tree.",
+      "parentUuid": "011b80f4_eec7f429",
+      "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
