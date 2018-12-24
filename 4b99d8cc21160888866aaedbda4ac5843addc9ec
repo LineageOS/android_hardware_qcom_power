@@ -140,6 +140,24 @@
       "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbbd88df_691e4d17",
+        "filename": "power-8998.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2018-12-24T10:39:43Z",
+      "side": 1,
+      "message": "I think he\u0027s all right: https://github.com/DevelopedInside/android_device_nubia_msm8998-common/blob/lineage-15.1/configs/perfboostsconfig.xml#L30",
+      "parentUuid": "57f76f2c_9eeaf15b",
+      "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
