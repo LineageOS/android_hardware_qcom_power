@@ -122,6 +122,24 @@
       "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57f76f2c_9eeaf15b",
+        "filename": "power-8998.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2018-12-24T08:39:25Z",
+      "side": 1,
+      "message": "Check if your launch boost section has \"Timeout\" attribute like this: https://github.com/TheMuppets/proprietary_vendor_xiaomi/blob/lineage-15.1/jason/proprietary/vendor/etc/perf/perfboostsconfig.xml#L29",
+      "parentUuid": "e45b6da7_2b53f4c2",
+      "revId": "4b99d8cc21160888866aaedbda4ac5843addc9ec",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
