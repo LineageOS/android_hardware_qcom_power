@@ -284,9 +284,8 @@ static void process_interaction_hint(void *data)
 
     if (duration >= kMinFlingDuration) {
         perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, -1, SCROLL_PREFILING);
-    } else {
-        perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
     }
+    perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
 }
 
 int power_hint_override(power_hint_t hint, void *data)
