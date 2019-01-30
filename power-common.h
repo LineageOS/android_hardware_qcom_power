@@ -42,6 +42,9 @@
 
 #define ARRAY_SIZE(x) (sizeof((x))/sizeof((x)[0]))
 
+#define INPUT_EVENT_WAKUP_MODE_OFF 4
+#define INPUT_EVENT_WAKUP_MODE_ON 5
+
 enum CPU_GOV_CHECK {
     CPU0 = 0,
     CPU1 = 1,

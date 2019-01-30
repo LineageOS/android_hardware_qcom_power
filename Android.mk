@@ -42,6 +42,8 @@ LOCAL_SRC_FILES := \
     list.c \
     hint-data.c
 
+LOCAL_HEADER_LIBRARIES := generated_kernel_headers
+
 LOCAL_C_INCLUDES := external/libxml2/include \
                     external/icu/icu4c/source/common
 
@@ -133,6 +135,10 @@ endif
 
 ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
     LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
+endif
+
+ifneq ($(TARGET_TAP_TO_WAKE_EVENT_NODE),)
+    LOCAL_CFLAGS += -DTAP_TO_WAKE_EVENT_NODE=\"$(TARGET_TAP_TO_WAKE_EVENT_NODE)\"
 endif
 
 ifeq ($(TARGET_HAS_LEGACY_POWER_STATS),true)
