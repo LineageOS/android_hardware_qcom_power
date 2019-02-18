@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7666cd3c_f0981cb4",
+        "filename": "power-8998.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 17232
+      },
+      "writtenOn": "2019-02-18T23:00:34Z",
+      "side": 0,
+      "message": "Wouldn\u0027t a better solution be to increase prefling timeout in perfboostsconfig.xml to something like 1500 and/or allow the hint to be overridden? Could do that and change this line to:\n\"if (((s_previous_duration * 1000) \u003c kMinFlingDuration)) \u0026\u0026 (s_previous_duration * 1000) \u003e (elapsed_time + duration * 1000)) {\"",
+      "revId": "334838270ee68fef337a29a50382f601c41e7c32",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
