@@ -55,6 +55,7 @@
 
 #define SYS_DISPLAY_PWR "/sys/kernel/hbtp/display_pwr"
 
+const int kMaxLaunchDuration = 5000; /* ms */
 const int kMaxInteractiveDuration = 5000; /* ms */
 const int kMinInteractiveDuration = 100; /* ms */
 const int kMinFlingDuration = 1500; /* ms */
@@ -192,12 +193,25 @@ static int process_video_encode_hint(void *metadata)
     return HINT_NONE;
 }
 
-static int process_activity_launch_hint(void *UNUSED(data))
+static int process_activity_launch_hint(void *data)
 {
+    static int handle = 0;
+    static int launch_mode = 0;
+    int state = *((int*)data);
+
+    // release lock early if launch has finished
+    if (!state) {
+        release_request(handle);
+        launch_mode = 0;
+        return HINT_HANDLED;
+    }
+
     if (current_mode != NORMAL_MODE) {
         ALOGV("%s: ignoring due to other active perf hints", __func__);
-    } else {
-        perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, -1, LAUNCH_BOOST_V1);
+    } else if (!launch_mode) {
+        handle = perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, kMaxLaunchDuration,
+                                            			LAUNCH_BOOST_V1);
+        launch_mode = 1;
     }
     return HINT_HANDLED;
 }
