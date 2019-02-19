@@ -50,6 +50,7 @@
 #include "performance.h"
 #include "power-common.h"
 
+const int kMaxLaunchDuration = 5000; /* ms */
 const int kMaxInteractiveDuration = 5000; /* ms */
 const int kMinInteractiveDuration = 500; /* ms */
 const int kMinFlingDuration = 1500; /* ms */
@@ -196,9 +197,18 @@ static void process_video_encode_hint(void *metadata)
     }
 }
 
-static void process_activity_launch_hint(void *UNUSED(data))
+static void process_activity_launch_hint(void *data)
 {
-    perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, -1, LAUNCH_BOOST_V1);
+    static int handle = 0;
+    int state = *((int*)data);
+
+    // release lock early if launch has finished
+    if (!state) {
+        release_request(handle);
+        return HINT_HANDLED;
+    }
+
+    handle = perf_hint_enable_with_type(VENDOR_HINT_FIRST_LAUNCH_BOOST, kMaxLaunchDuration, LAUNCH_BOOST_V1);
 }
 
 static void process_interaction_hint(void *data)
