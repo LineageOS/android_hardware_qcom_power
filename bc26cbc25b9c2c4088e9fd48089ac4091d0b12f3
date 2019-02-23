@@ -34,6 +34,24 @@
       "revId": "bc26cbc25b9c2c4088e9fd48089ac4091d0b12f3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8ef9869_dad907b6",
+        "filename": "power-8994.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2019-02-23T09:50:42Z",
+      "side": 1,
+      "message": "5s is just an upper bound, in most cases (\u003c 5s) framework decides the boost duration",
+      "parentUuid": "9d37ec08_ab39a2c3",
+      "revId": "bc26cbc25b9c2c4088e9fd48089ac4091d0b12f3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
