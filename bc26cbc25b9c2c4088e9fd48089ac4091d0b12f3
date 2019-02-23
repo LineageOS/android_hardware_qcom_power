@@ -16,6 +16,24 @@
       "revId": "bc26cbc25b9c2c4088e9fd48089ac4091d0b12f3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d37ec08_ab39a2c3",
+        "filename": "power-8994.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 17232
+      },
+      "writtenOn": "2019-02-23T09:15:23Z",
+      "side": 1,
+      "message": "Do a lot of apps actually take more than two seconds to launch (time between when framework sends launch end and launch start powerhints) on SD810 devices? I was thinking for the vast majority of cases it should take \u003c 2 sec.",
+      "parentUuid": "a0644c17_10b381bd",
+      "revId": "bc26cbc25b9c2c4088e9fd48089ac4091d0b12f3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
