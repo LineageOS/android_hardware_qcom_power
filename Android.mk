@@ -116,6 +116,10 @@ ifeq ($(call is-board-platform-in-list,msm8916), true)
 LOCAL_SRC_FILES += power-8916.c
 endif
 
+ifeq ($(call is-board-platform-in-list,sm6150), true)
+LOCAL_SRC_FILES += power-6150.c
+endif
+
 endif  #  End of board specific list
 
 ifneq ($(TARGET_POWER_SET_FEATURE_LIB),)
