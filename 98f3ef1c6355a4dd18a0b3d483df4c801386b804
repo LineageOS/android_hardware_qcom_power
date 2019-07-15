@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12831148_d7643efb",
+        "filename": "power-6150.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2019-07-15T17:33:27Z",
+      "side": 1,
+      "message": "are you sure?\nI probably get the usecase but \\o/",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 35
+      },
+      "revId": "98f3ef1c6355a4dd18a0b3d483df4c801386b804",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
