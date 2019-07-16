@@ -22,6 +22,30 @@
       "revId": "98f3ef1c6355a4dd18a0b3d483df4c801386b804",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b0b749c_f0360896",
+        "filename": "power-6150.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 16208
+      },
+      "writtenOn": "2019-07-16T02:09:58Z",
+      "side": 1,
+      "message": "Yes I am sure. Because if this returns HINT_NONE, the common power_hint function will handle this, which is only useful for interactive and ondemand governor.",
+      "parentUuid": "12831148_d7643efb",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 35
+      },
+      "revId": "98f3ef1c6355a4dd18a0b3d483df4c801386b804",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
