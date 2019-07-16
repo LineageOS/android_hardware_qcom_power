@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26b1a86d_cc17f974",
+        "filename": "power-msmnile.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16208
+      },
+      "writtenOn": "2019-07-16T02:12:43Z",
+      "side": 1,
+      "message": "maybe you can clean some of the headers up",
+      "revId": "d210d987c3c49a27a9128d91669e0e9876a024a7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0c9cbd7_3d2f0737",
+        "filename": "power-msmnile.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 16208
+      },
+      "writtenOn": "2019-07-16T02:12:43Z",
+      "side": 1,
+      "message": "align whith 6150 check here",
+      "revId": "d210d987c3c49a27a9128d91669e0e9876a024a7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
