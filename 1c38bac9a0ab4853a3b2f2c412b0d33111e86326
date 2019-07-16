@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcecf224_94efe6fc",
+        "filename": "performance.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2019-07-16T01:08:24Z",
+      "side": 0,
+      "message": "Why removing this?",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "1c38bac9a0ab4853a3b2f2c412b0d33111e86326",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "167602d7_270e61e1",
+        "filename": "performance.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2019-07-16T01:08:24Z",
+      "side": 0,
+      "message": "ditto",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 22
+      },
+      "revId": "1c38bac9a0ab4853a3b2f2c412b0d33111e86326",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6cc6800_586b68e0",
+        "filename": "performance.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2019-07-16T01:08:24Z",
+      "side": 0,
+      "message": "ditto",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "1c38bac9a0ab4853a3b2f2c412b0d33111e86326",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
