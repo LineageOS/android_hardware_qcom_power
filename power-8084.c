@@ -148,31 +148,31 @@ static int set_power_profile(void *data)
     return ret;
 }
 
-/* fling boost: min 3 CPUs, min 1.1 GHz */
+/* fling boost: min 3 CPUs, min 1.5 GHz */
 static int resources_interaction_fling_boost[] = {
     CPUS_ONLINE_MIN_3,
-    CPU0_MIN_FREQ_NONTURBO_MAX + 1,
-    CPU1_MIN_FREQ_NONTURBO_MAX + 1,
-    CPU2_MIN_FREQ_NONTURBO_MAX + 1,
-    CPU3_MIN_FREQ_NONTURBO_MAX + 1
-};
-
-/* interactive boost: min 2 CPUs, min 1.1 GHz */
-static int resources_interaction_boost[] = {
-    CPUS_ONLINE_MIN_2,
-    CPU0_MIN_FREQ_NONTURBO_MAX + 1,
-    CPU1_MIN_FREQ_NONTURBO_MAX + 1,
-    CPU2_MIN_FREQ_NONTURBO_MAX + 1,
-    CPU3_MIN_FREQ_NONTURBO_MAX + 1
-};
-
-/* lauch boost: min 2 CPUs, full power for 2 CPUs, min 1.5 GHz for the others */
-static int resources_launch[] = {
-    CPUS_ONLINE_MIN_2,
-    CPU0_MIN_FREQ_TURBO_MAX,
-    CPU1_MIN_FREQ_TURBO_MAX,
+    CPU0_MIN_FREQ_NONTURBO_MAX + 5,
+    CPU1_MIN_FREQ_NONTURBO_MAX + 5,
     CPU2_MIN_FREQ_NONTURBO_MAX + 5,
     CPU3_MIN_FREQ_NONTURBO_MAX + 5
+};
+
+/* interactive boost: min 2 CPUs, min 1.5 GHz */
+static int resources_interaction_boost[] = {
+    CPUS_ONLINE_MIN_2,
+    CPU0_MIN_FREQ_NONTURBO_MAX + 5,
+    CPU1_MIN_FREQ_NONTURBO_MAX + 5,
+    CPU2_MIN_FREQ_NONTURBO_MAX + 5,
+    CPU3_MIN_FREQ_NONTURBO_MAX + 5
+};
+
+/* lauch boost: min 3 CPUs, full power */
+static int resources_launch[] = {
+    CPUS_ONLINE_MIN_3,
+    CPU0_MIN_FREQ_TURBO_MAX,
+    CPU1_MIN_FREQ_TURBO_MAX,
+    CPU2_MIN_FREQ_TURBO_MAX,
+    CPU3_MIN_FREQ_TURBO_MAX
 };
 
 const int DEFAULT_INTERACTIVE_DURATION   =  200; /* ms */
