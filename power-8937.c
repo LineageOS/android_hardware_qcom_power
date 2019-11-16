@@ -251,7 +251,9 @@ static void process_interaction_hint(void *data)
     s_previous_boost_timespec = cur_boost_timespec;
     s_previous_duration = duration;
 
-    perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
+    if (duration > kMinInteractiveDuration) {
+        perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
+    }
 }
 
 int power_hint_override(power_hint_t hint, void *data)
